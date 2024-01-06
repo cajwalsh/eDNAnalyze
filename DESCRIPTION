@@ -1,0 +1,27 @@
+Package: eDNAnalyze
+Title: Import, Annotate, and Visualize DNA Metabarcoding Data
+Version: 0.1.0
+Authors@R: c(
+    person("Cameron", "Walsh", email = "cajw@hawaii.edu", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-9567-6721"))
+    person("Mykle", "Hoban", email = "mhoban@hawaii.edu", role = "ctb",
+           comment = c(ORCID = "0000-0002-2514-3599")))
+Description: Manage and augment taxonomic assignment data provided by a DNA
+    metabarcoding bioinformatic pipeline (typically a version of eDNAFlow)
+    sorted by operational taxonomic unit (OTU). Generate text reports and plots
+    of read and OTU abundance for each sample and across the entire dataset.
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    ape,
+    dplyr,
+    fs,
+    ggplot2,
+    ggthemes,
+    httr,
+    magrittr,
+    patchwork,
+    readr,
+    tidyr
