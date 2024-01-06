@@ -3,7 +3,7 @@ Title: Import, Annotate, and Visualize DNA Metabarcoding Data
 Version: 0.1.0
 Authors@R: c(
     person("Cameron", "Walsh", email = "cajw@hawaii.edu", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0001-9567-6721"))
+           comment = c(ORCID = "0000-0001-9567-6721")),
     person("Mykle", "Hoban", email = "mhoban@hawaii.edu", role = "ctb",
            comment = c(ORCID = "0000-0002-2514-3599")))
 Description: Manage and augment taxonomic assignment data provided by a DNA
