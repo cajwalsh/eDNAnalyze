@@ -33,7 +33,7 @@ lca_progression <- function(glob_to_pid = "taxonomy_q[0-9]+_p", dir = getwd(), l
       tname <- gsub("taxonomy_q[0-9]+_|_d.*", "", table)
       pid <- as.numeric(gsub("p", "", tname))
     } else {
-      tname <- sub("*.tab|*.txt", "", table)
+      tname <- sub("*.tab|*.txt|*.tsv", "", table)
       pid <- as.numeric(gsub(glob_to_pid, "", tname))
     }
     ## Read the table in, add pid as a column, append them together
@@ -43,8 +43,8 @@ lca_progression <- function(glob_to_pid = "taxonomy_q[0-9]+_p", dir = getwd(), l
   }
 
   ## If newest version of Mykle pipeline, change column names to fit
-  if("zotu" %in% names(big_table)) "OTU" = names(big_table)[which(names(big_table)=="zotu")]
-  if("numberOfUnq_BlastHits" %in% names(big_table)) "unique_hits" = names(big_table)[which(names(big_table)=="numberOfUnq_BlastHits")]
+  if("zotu" %in% names(big_table)) names(big_table)[which(names(big_table)=="zotu")] = "OTU" 
+  if("numberOfUnq_BlastHits" %in% names(big_table)) names(big_table)[which(names(big_table)=="numberOfUnq_BlastHits")] = "unique_hits"
   
   ## Keep only the highest match level for each OTU
   final_table <- big_table %>%
