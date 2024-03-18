@@ -1,9 +1,8 @@
 Package: eDNAnalyze
 Title: Import, Annotate, and Visualize DNA Metabarcoding Data
 Version: 0.1.0
-Authors@R: c(
-    person("Cameron", "Walsh", email = "cajw@hawaii.edu", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0001-9567-6721"))
+Authors@R: person("Cameron", "Walsh", email = "cajw@hawaii.edu", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-9567-6721")
 Description: Manage and augment taxonomic assignment data provided by a DNA
     metabarcoding bioinformatic pipeline (typically a version of eDNAFlow)
     sorted by operational taxonomic unit (OTU). Generate text reports and plots
