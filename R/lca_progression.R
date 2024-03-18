@@ -43,8 +43,8 @@ lca_progression <- function(glob_to_pid = "taxonomy_q[0-9]+_p", dir = getwd(), l
   }
 
   ## If newest version of Mykle pipeline, change column names to fit
-  if("zotu" %in% names(final_table)) "OTU" = names(final_table)[which(names(final_table)=="zotu")]
-  if("numberOfUnq_BlastHits" %in% names(final_table)) "unique_hits" = names(final_table)[which(names(final_table)=="numberOfUnq_BlastHits")]
+  if("zotu" %in% names(big_table)) "OTU" = names(big_table)[which(names(big_table)=="zotu")]
+  if("numberOfUnq_BlastHits" %in% names(big_table)) "unique_hits" = names(big_table)[which(names(big_table)=="numberOfUnq_BlastHits")]
   
   ## Keep only the highest match level for each OTU
   final_table <- big_table %>%
