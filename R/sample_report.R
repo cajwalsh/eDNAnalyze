@@ -224,9 +224,9 @@ sample_report <- function(df,
     use_custom_pal = F
     ## If no custom color palette is defined (custom_palette = F by default) and there are 8 or
     ## fewer focal taxa, plot them using the colorblind-friendly palette
-    if(class(custom_palette)=="character" & length(final_groups)<9) {
+    if(class(custom_palette)!="character" & length(final_groups)<9) {
       use_colorblind_pal = T
-    } else if(class(custom_palette)=="character") {
+    } else if(class(custom_palette)!="character") {
       ## If no custom palette was defined and there are >8 focal taxa, warn the user that
       ## the plot can not be made with the default colorblind-friendly palette
       warning("More than 8 groups are to be plotted. The default colorblind-friendly palette could not be used.")
