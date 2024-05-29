@@ -21,7 +21,7 @@ fill_blank_taxa = function(df, dropped = "dropped", unassigned = "NA") {
     if("" %in% df[x,] |
        NA %in% df[x,]) {
       ## If all taxonomic levels are empty or NA, replace all of these with dropped
-      if(all(df[x,] %in% c("", NA))) {
+      if(all(df[x,] %in% c("dropped", "", NA))) {
         df[x,] = dropped
       } else {
         ## If only some are, find the lowest taxonomic assignment level
