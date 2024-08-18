@@ -263,7 +263,7 @@ sample_report <- function(df,
 
     ggplot2::ggsave(paste0(outdir, "/", file_prefix, "_reads.pdf"), reads, device = "pdf",
                     height = 10, width = ifelse(length(df_reads)<50,
-                                                10, 0.15*length(df_reads)), units = "in")
+                                                10, 0.15*length(df_reads)), units = "in", limitsize = F)
 
     total_otus <- ggplot2::ggplot(df_reads_long, ggplot2::aes(x = sample, fill = group)) +
       ggplot2::geom_bar(show.legend = F) +
@@ -283,7 +283,7 @@ sample_report <- function(df,
 
     ggplot2::ggsave(paste0(outdir, "/", file_prefix, "_OTUs.pdf"), otus, device = "pdf",
                     height = 10, width = ifelse(length(df_reads)<50,
-                                                10, 0.15*length(df_reads)), units = "in")
+                                                10, 0.15*length(df_reads)), units = "in", limitsize = F)
   }
 
   if(report_text==T) {
