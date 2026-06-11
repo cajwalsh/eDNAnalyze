@@ -1,12 +1,12 @@
-#' Add OTU sequences and their lengths to an OTU table
+#' Add zotu sequences and their lengths to a zotu table
 #'
-#' @param fasta A character string specifying the path to/name of the OTU fasta file
-#' @param df A data frame where each row corresponds to an OTU and includes a column named "OTU" to match names with the fasta file
+#' @param fasta A character string specifying the path to/name of the zotu fasta file
+#' @param df A data frame where each row corresponds to a zotu and includes a column named "zotu" to match names with the fasta file
 #' @param new_cols A number specifying where the new columns should be inserted into df
-#' @returns The original data frame with columns containing the DNA sequence (df$sequence) and its length (df$seq_length) for all OTUs
+#' @returns The original data frame with columns containing the DNA sequence (df$sequence) and its length (df$seq_length) for all zotus
 #' @examples
-#' add_seqs(fasta = "~/Desktop/results/OTUs.fasta", df = COI_taxa, new_cols = 9)
-#' @description Extracts the DNA sequence and its length for each OTU from a fasta file and adds them to two columns of the OTU table data frame
+#' add_seqs(fasta = "~/Desktop/results/zotus.fasta", df = COI_taxa, new_cols = 9)
+#' @description Extracts the DNA sequence and its length for each zotu from a fasta file and adds them to two columns of the zotu table data frame
 #' @export
 add_seqs <- function(fasta, df, new_cols) {
 
@@ -15,7 +15,7 @@ add_seqs <- function(fasta, df, new_cols) {
   fasta_sequences = sapply(sequences, function(seq) paste(toupper(seq), collapse = ""))
 
   ## Get the zotu values from your dataframe
-  zotu_values <- df$OTU
+  zotu_values <- df$zotu
 
   ## Initialize new columns
   seq_list <- list()

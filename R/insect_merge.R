@@ -1,13 +1,13 @@
 #' Merge LCA and insect taxonomic assignment data
-#' @param lca A data frame where each row corresponds to an OTU with at least 9 columns including:
+#' @param lca A data frame where each row corresponds to a zotu with at least 9 columns including:
 #' * taxonomic information across 8 levels in descending order (domain, kingdom, phylum, class, order, family, genus, species)
-#' * OTU name (named "OTU" or "zotu")
+#' * zotu name
 #' * optional: information from blast (unique_hits, taxid, and pid if lca_progression was used)
 #' @param insect_path The path to the insect data file (default = "insect_classified.csv)
-#' @returns A data frame containing taxonomic assignments from domain to species and information from either blast or insect (whichever assignment was kept) for all OTUs
+#' @returns A data frame containing taxonomic assignments from domain to species and information from either blast or insect (whichever assignment was kept) for all zotus
 #' @examples
 #' lca_insect_merge(lca = lca, taxdir = "~/Desktop", insect_path = "~/Desktop/results/insect_results.csv")
-#' @description Merges BLAST LCA and insect taxonomic assignment data for all OTUs into one data frame. If an OTU was assigned taxonomy by the LCA process (through BLAST), the insect and assignment related paratemers are nullified so the assignment method is clear. PLEASE NOTE THAT THE NCBI TAXONOMY DIRECTORY IS OVER 2GB IN SIZE. Make sure your computer has space for this and refer to this file path each time this function is used to save storage space.
+#' @description Merges BLAST LCA and insect taxonomic assignment data for all zotus into one data frame. If a zotu was assigned taxonomy by the LCA process (through BLAST), the insect and assignment related paratemers are nullified so the assignment method is clear. PLEASE NOTE THAT THE NCBI TAXONOMY DIRECTORY IS OVER 2GB IN SIZE. Make sure your computer has space for this and refer to this file path each time this function is used to save storage space.
 #' @export
 lca_insect_merge = function(lca, insect_path = "insect_taxonomy.tsv") {
 
@@ -23,9 +23,8 @@ lca_insect_merge = function(lca, insect_path = "insect_taxonomy.tsv") {
   insect[which(insect$taxon=="Rhodophyta"),"phylum"] = "Rhodophyta"
   insect[which(insect$taxon=="PX clade"),"class"] = "Phaeophyceae|Xanthophyceae"
 
-  ## Rename first column to OTU to merge both taxonomy dataframes
-  if("zotu" %in% names(insect)) names(insect)[which(names(insect) == "zotu")] = "OTU"
-  ids <- merge(lca, insect, by = "OTU", all = T) %>%
+  ## Rename first column to zotu to merge both taxonomy dataframes
+  ids <- merge(lca, insect, by = "zotu", all = T) %>%
     dplyr::mutate(
       taxid = dplyr::coalesce(taxid.x, taxid.y),
       domain = dplyr::coalesce(domain.x, domain.y),
@@ -39,7 +38,7 @@ lca_insect_merge = function(lca, insect_path = "insect_taxonomy.tsv") {
     ) %>%
     dplyr::select(-ends_with(".x"), -ends_with(".y"))
 
-  ## Remove possibly discordant insect classification information/stats for OTUs identified using BLAST
+  ## Remove possibly discordant insect classification information/stats for zotus identified using BLAST
   ids[!is.na(ids$unique_hits),c("taxon")] = NA
 
   ## Replace NAs in blast hit column with 0s (as if there had been a blast hit, it would be classified by LCA and not insect)
@@ -49,10 +48,10 @@ lca_insect_merge = function(lca, insect_path = "insect_taxonomy.tsv") {
   if("pid" %in% names(ids)) {
   ids = ids[,c("domain", "kingdom", "phylum", "class",
                "order", "family", "genus", "species",
-               "OTU", "unique_hits", "pid", "taxon", "taxid")]
+               "zotu", "unique_hits", "pid", "taxon", "taxid")]
   } else {
     ids = ids[,c("domain", "kingdom", "phylum", "class",
                  "order", "family", "genus", "species",
-                 "OTU", "unique_hits", "taxon", "taxid")]
+                 "zotu", "unique_hits", "taxon", "taxid")]
   }
 }

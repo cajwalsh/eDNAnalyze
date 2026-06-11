@@ -1,15 +1,15 @@
 #' Fill in blank taxonomic assignments
 #'
-#' @param df A data frame where each row corresponds to an OTU with ONLY 8 columns that contain taxonomic information in descending order (domain, kingdom, phylum, class, order, family, genus, species)
-#' @param dropped A character string assigned to lower taxonomic levels that couldn't be resolved for an OTU (default = "dropped)
+#' @param df A data frame where each row corresponds to a zotu with ONLY 8 columns that contain taxonomic information in descending order (domain, kingdom, phylum, class, order, family, genus, species)
+#' @param dropped A character string assigned to lower taxonomic levels that couldn't be resolved for a zotu (default = "dropped)
 #' @param unassigned A character string filled into higher order taxa for which the assigned taxon has no assignment (default = NA)
 #' @returns The original data frame without blanks
 #' @examples
 #' fill_blank_taxa(df)
 #' fill_blank_taxa(df = COI_taxa, dropped = "unknown", unassigned = "unassigned")
-#' @description Fills in blank taxonomic information for OTUs by distinguishing between dropped and unassigned blanks.
-#' * Dropped taxonomic levels are defined here as lower level assignments that couldn't be resolved (e.g., an OTU that could only be resolved as a fish (class Actinopteri) with no clear order or lower level assignements would have "dropped" for order-species).
-#' * Unassigned taxonomic levels are defined here as higher order taxa to which a lower level taxonomic assignment has no assignment (e.g., an OTU assigned to the family Pomacentridae would be "unassigned" for order as their status at that leve is uncertain).
+#' @description Fills in blank taxonomic information for zotus by distinguishing between dropped and unassigned blanks.
+#' * Dropped taxonomic levels are defined here as lower level assignments that couldn't be resolved (e.g., a zotu that could only be resolved as a fish (class Actinopteri) with no clear order or lower level assignements would have "dropped" for order-species).
+#' * Unassigned taxonomic levels are defined here as higher order taxa to which a lower level taxonomic assignment has no assignment (e.g., a zotu assigned to the family Pomacentridae would be "unassigned" for order as their status at that leve is uncertain).
 #' * Writing "NA" (in quotes) for dropped or unassigned will give actual NA values (unassigned = "NA" is the default).
 #' @export
 
